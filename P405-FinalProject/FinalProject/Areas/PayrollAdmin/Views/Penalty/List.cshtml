@@ -1,0 +1,177 @@
+﻿@model PenaltyViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-minus-square mr-3"></i> Bu ay cəriməsi olan işçilər</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light mb" style="padding: 10px 20px 26px 15px;height:610px;">
+                    <form>
+                        <div class="row my-5">
+
+                            <div class="col-xl-5">
+                                <input id="recruitmentPenaltyList" class="form-control search-input" type="text" placeholder="Bu ayda cəriməsi olan işçi" />
+                            </div>
+
+                            <div class="col-xl-1 pl-0">
+                                <button type="submit" class="btn btn-block bg-color searchPenaltyList"><i class="fas fa-sync-alt"></i></button>
+                            </div>
+
+                            <div class="col-xl-6">
+                                @{
+                                    var currentPage = Model.PaginationModel.CurrentPage;
+
+                                    <ul class="pagination float-right my-pagination">
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                        @{
+                                            var startPaginationPage = currentPage;
+                                            if (currentPage == 2)
+                                            {
+                                                startPaginationPage = currentPage - 1;
+                                            }
+                                            else if (currentPage == 3)
+                                            {
+                                                startPaginationPage = currentPage - 2;
+                                            }
+                                            else if (currentPage != 1)
+                                            {
+                                                startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                            }
+                                        }
+
+                                        @for (int i = startPaginationPage; (i <= currentPage + 1 && i <= Model.PaginationModel.TotalPages); i++)
+                                        {
+                                            var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
+                                    { "page", i.ToString() }
+                                };
+
+                                            var classAttr = "";
+
+                                            if (i == currentPage)
+                                            {
+                                                classAttr = "active";
+                                            }
+
+                                            <li class="page-item"><a class="page-link @classAttr" asp-controller="Penalty" asp-action="List" asp-all-route-data="page">@i</a></li>
+                                        }
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+
+                    </form>
+                    <span id="recruitmentPenaltyListError" class="text-danger d-block mb-4 bold" style="font-size:20px;"></span>
+
+
+                    <table class="table table-striped table-bordered mb penaltyList">
+                        <thead>
+                            <tr>
+                                <th><i class="far fa-image"></i></th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Email</th>
+                                <th>Mağaza</th>
+                                <th>Vəzifə</th>
+                                <th>Məbləğ</th>
+                                <th>Cərimənin səbəbi</th>
+                                <td><i class="fas fa-pen my-text ml-4"></i> </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Penalties)
+                            {
+                                <tr>
+                                    <td> <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Recruitment.Employee.Image" /></td>
+                                    <td>
+                                        @item.Recruitment.Employee.Firstname
+                                    </td>
+                                    <td>
+                                        @item.Recruitment.Employee.Lastname
+                                    </td>
+                                    <td>@item.Recruitment.Employee.Email</td>
+                                    <td>@item.Recruitment.Shop.Name</td>
+                                    <td>@item.Recruitment.Position.Name</td>
+                                    <td>
+                                        @item.Amount
+                                    </td>
+                                    <td>
+                                        @item.Reason.PadLeft(20, ' ').Substring(0, 20);
+                                    </td>
+                                    <td>
+                                        <button type="button" data-id="@item.RecruitmentId" class="btn bg-color penaltyEdit" data-toggle="modal" id="emloyeeId">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                            <tr id="penaltyList" class="d-none">
+                                <td> <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/" /></td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td> </td>
+                                <td> </td>
+                                <td></td>
+                                <td>
+                                    <button type="button" data-id="" class="btn bg-color penaltyEdit" data-toggle="modal" id="emloyeeId">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* --------- Penalty edit -----------------------------------------------------------------------------------------------------*@
+
+<div class="modal fade" id="myEdit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color">
+            <form>
+                <div class="modal-header">
+                    <button class="btn text-white btn-rounded pl-0" style="font-size:20px;">
+                        <i class="fa fa-pencil"></i> Cərimənin səbəbini və məbləğini redaktə edin
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="elements-form">
+                        <input id="penaltyAmount" type="text" class="name-input form-control" placeholder="cərimənin miqdarı">
+                    </div>
+                    <div class="elements-form">
+                        <input id="penaltyReason" type="text" class="name-input form-control" placeholder="cərimənin səbəbi">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex">
+                    <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                        <span class="caption-subject bold ml-2">İmtina </span>
+                    </button>
+                    <button type="button" class="btn penaltySave border-white" data-dismiss="modal">
+                        <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                        <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

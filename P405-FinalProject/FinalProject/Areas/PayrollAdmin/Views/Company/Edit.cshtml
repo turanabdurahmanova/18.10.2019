@@ -1,0 +1,87 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container padding-top">
+
+    <div class="row list-row bg-color ">
+        <div class="col-xl-12 my-border">
+            <h4 class="page-title text-white">
+                <i class="fa fa-pencil m-r-5"></i>
+                <span class="caption-subject bold ml-2"> Redaktə et </span>
+            </h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" enctype="multipart/form-data" asp-controller="Company" asp-action="Edit">
+                <div class="portlet light">
+                    <div class="portlet-body pt-4">
+
+                        <div class="row company-padding">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="my-label">Şirkətin adı </label>
+                                    <input asp-for="Name" class="form-control mb-2 company-edit-input" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="OpenCompany" class="my-label">Şirkətin yaranma tarixi</label>
+                                    <input asp-for="OpenCompany" class="form-control mb-2 company-edit-input">
+                                    <span asp-validation-for="OpenCompany" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row company-padding">
+                            <div class="col-xl-12">
+                                <div class="form-group">
+                                    <label asp-for="Addres" class="my-label">Şirkətin faktiki ünvanı</label>
+                                    <div class="input-group">
+                                        <input asp-for="Addres" class="form-control company-edit-input mb-2">
+                                    </div>
+                                    <span asp-validation-for="Addres" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @await Component.InvokeAsync("PoctIndex", Model.PoctIndex)
+
+                        <div class="row company-padding">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="my-label">Şirkətin emaili</label>
+                                    <input asp-for="Email" class="form-control mb-2 company-edit-input">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="TelNumber" class="my-label">Şirkətin telefon nömrəsi</label>
+                                    <input asp-for="TelNumber" class="form-control mb-2 company-edit-input">
+                                    <span asp-validation-for="TelNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-4 mt-4">
+                            <div class="col-xl-6">
+                                <a class="btn red btn-outline float-right" asp-action="List">
+                                    <i class="fa fa-close"></i> İmtina
+                                </a>
+                            </div>
+                            <div class="col-xl-6">
+                                <button class="btn bg-color btn-rounded" asp-action="Edit">
+                                    <i class="fa fa-save"></i>
+                                    Yadda saxla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model SelectListItemViewModel
+
+<div class="col-xl-6 mt-3">
+    <label>Şirkət</label>
+    <select id="companyId" class="form-control" asp-items="Model.SelectListCompanies"></select>
+</div>
+<div class="col-xl-6 mt-3">
+    <label>Departament</label>
+    <select id="departamentId" class="form-control" asp-items="Model.SelectListDepartmans"></select>
+    <span id="departamentError" class="text-danger"></span>
+</div>
+<div class="col-xl-6 mt-3">
+    <label>Mağaza</label>
+    <select id="shopId" class="form-control" asp-items="Model.SelectListShop" name="Recruitment.ShopId" asp-for="Shop.Id"></select>
+    <span id="shopError" class="text-danger"></span>
+</div>
+<div class="col-xl-6 mt-3">
+    <label>Vəzifə</label>
+    <select id="positionId" class="form-control" asp-items="Model.SelectListPositions" name="Recruitment.PositionId" asp-for="Position.Id"></select>
+    <span id="positionError" class="text-danger"></span>
+</div>
+
+

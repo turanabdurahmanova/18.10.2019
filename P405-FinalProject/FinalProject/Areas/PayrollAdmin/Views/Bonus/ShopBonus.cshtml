@@ -1,0 +1,87 @@
+﻿@model ShopBonusViewModel
+@{
+    ViewData["Title"] = "ShopBonus";
+}
+
+<div class="page-wrapper padding-top">
+    <div class="container">
+        <div class="row" style="margin-top:8%;">
+            <div class="col-xl-12">
+                <form method="post" class="my-form-margin">
+                    <div class="portlet light">
+                        <div class="portlet-title" style="border-bottom:1px solid #778899; height:73px;">
+                            <div class="caption">
+                                <i class="fa fa-plus my-text mr-2"></i>
+                                <span class="caption-subject bold my-text"> Mağazanın aylıq gəlirinə görə işçilərə bonusun verilməsi </span>
+                            </div>
+                            <div class="actions hidden">
+                                <div class="btn-group btn-group-circle">
+                                    <button class="btn red btn-outline" asp-action="List">
+                                        <i class="fa fa-close"></i> İmtina
+                                    </button>
+                                    <button class="btn green btn-circle-right btn-outline" asp-action="ShopBonus">
+                                        <i class="fa fa-save" aria-hidden="true"></i> Yadda saxla
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label><span class="text-danger"> * </span>Mağaza</label>
+                                    <select asp-items="Model.Shops" class="form-control" name="ShopId">
+                                        <option value=""></option>
+                                    </select>
+                                    <span asp-validation-for="ShopId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label><span class="text-danger"> * </span>İşçilərə veriləcək bonus</label>
+                                    <input class="form-control" asp-for="ShopBonus.PromotionAmount" />
+                                    <span asp-validation-for="ShopBonus.PromotionAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label"><span class="text-danger"> * </span>Kompaniyanın başlama tarixi</label>
+                                    <input class="form-control" type="date" asp-for="ShopBonus.WhenStarted" />
+                                    <span asp-validation-for="ShopBonus.WhenStarted" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label"><span class="text-danger"> * </span>Kompaniyanın bitmə tarixi</label>
+                                    <input class="form-control" type="date" asp-for="ShopBonus.WhenLeft" />
+                                    <span asp-validation-for="ShopBonus.WhenLeft" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label"><span class="text-danger"> * </span>Tələb olunan minimum gəlir </label>
+                                    <input id="salary" class="form-control" asp-for="ShopBonus.MinAmount" />
+                                    <span asp-validation-for="ShopBonus.MinAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label"><span class="text-danger"> * </span>Tələb olunan maxsimum gəlir </label>
+                                    <input id="salary" class="form-control" asp-for="ShopBonus.MaxAmount" />
+                                    <span asp-validation-for="ShopBonus.MaxAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

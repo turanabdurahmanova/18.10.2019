@@ -1,0 +1,137 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container padding-top">
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="list-row bg-color">
+                <div class="col-xl-12 my-border">
+                    <h5 class="page-title text-white"><i class="fas fa-info-circle mr-3"></i> Namizəd haqqında detallı məlumat</h5>
+                </div>
+            </div>
+          
+            <div class="portlet light mb" style="padding: 2% 20px 57px 15px;">
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-xl-9 mt-5">
+
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="Firstname">Ad</label>
+                                        <input asp-for="Firstname" class="form-control mb-2 e-i-h" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="Fathername">Ata adı</label>
+                                        <input asp-for="Fathername" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="Lastname">Soyad</label>
+                                        <input asp-for="Lastname" class="form-control mb-2 e-i-h" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="Birthday">Doğum günü</label>
+                                        <input asp-for="Birthday" class="form-control mb-2 e-i-h" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="PassportExpirationDate">Passportun son istifadə tarixi</label>
+                                        <input asp-for="PassportExpirationDate" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label">Cinsi</label>
+                                        <select class="form-control e-i-h" asp-for="GenderType" asp-items="Html.GetEnumSelectList<Gender>()" disabled>
+                                            <option selected="selected" value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label asp-for="Email" class="control-label e-label">Email</label>
+                                        <input asp-for="Email" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="Phone">Tel</label>
+                                        <input asp-for="Phone" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="PassportNumber">Passport nömrəsi</label>
+                                        <input asp-for="PassportNumber" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="EducationType">Təhsili</label>
+                                        <select class="form-control e-i-h" asp-for="EducationType" asp-items="Html.GetEnumSelectList<Education>()" disabled>
+                                            <option selected="selected" value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="MarialStatusType">Ailə vəziyyəti</label>
+                                        <select class="form-control e-i-h" asp-for="MarialStatusType" asp-items="Html.GetEnumSelectList<MarialStatus>()" disabled>
+                                            <option selected="selected" value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="DistrictRegistration">Qeydiyyat yeri</label>
+                                        <input asp-for="DistrictRegistration" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="e-form-group">
+                                        <label class="e-label" asp-for="CurrentAddres">Faktiki ünvan</label>
+                                        <input asp-for="CurrentAddres" class="form-control mb-2 e-i-h" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                        </div>
+
+                        <div class="col-xl-3 img-height" style="margin-top:0">
+                            <div class="row" style="margin-bottom:18%;">
+                                <div class="col-xl-12">
+                                    <a class="btn red bg-color text-white btn-outline border float-right" asp-action="List">
+                                        <i class="fas fa-long-arrow-alt-left"></i> Geri
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="e-form-group form-group-height">
+                                <img src="~/img/@Model.Image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        </div>
+    </div>
+</div>
+

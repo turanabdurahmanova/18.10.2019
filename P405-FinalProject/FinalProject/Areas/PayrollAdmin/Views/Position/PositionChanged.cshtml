@@ -1,0 +1,104 @@
+﻿@model PositionChangedViewModel
+
+@{
+    ViewData["Title"] = "PositionChanged";
+}
+
+<div class="page-wrapper padding-top">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white">
+                    <i class="fas fa-exchange-alt mr-3"></i>
+                    Vəzifənin dəyişilməsi
+                </h4>
+            </div>
+        </div>
+
+        <form method="post" asp-action="PositionChanged" asp-controller="Position">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="portlet light mb" style="padding: 38px 20px 10px 15px;">
+                        <div class="row formerwork" style="border:0px;">
+                            <div class="col-xl-4">
+                                <div class="form-group">
+                                    <label asp-for="Recruitment.Employee.Firstname" class="my-label">Vəzifəsi dəyişiləcək işçinin adı</label>
+                                    <input asp-for="Recruitment.Employee.Firstname" name="EmployeeId" class="form-control mb-2" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="form-group">
+                                    <label asp-for="Recruitment.Employee.Lastname" class="my-label">Vəzifəsi dəyişiləcək işçinin soyadı</label>
+                                    <input asp-for="Recruitment.Employee.Lastname" class="form-control mb-2" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="form-group">
+                                    <label asp-for="Recruitment.Position.Name" class="my-label">Əvvəlki vəzifə</label>
+                                    <input asp-for="Recruitment.Position.Name" class="form-control mb-2" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label class="my-label">Əvvəlki maaş</label>
+                                    <input asp-for="Recruitment.Amount" class="form-control mb-2" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label asp-for="Recruitment.WhenStarted" class="my-label">Əvvəlki vəzifəyə başlama tarixi</label>
+                                    <input asp-for="Recruitment.WhenStarted" type="date" class="form-control mb-2" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label class="my-label">Əvvəlki vəzifədən çıxış tarixi</label>
+                                    <input asp-for="WorkerWhenLeft" type="date" class="form-control mb-2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row formerwork" style="border:2px solid #778899;">
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label class="my-label"><span class="text-danger"> * </span>Yeni vəzifə</label>
+                                    <select id="positionId" class="form-control" asp-items="Model.SelectListItemViewModel.SelectListPositions" name="newPositionId">
+                                        <option value=""></option>
+                                    </select>
+                                    <span id="positionChangedError" asp-validation-for="newPositionId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label">Yeni əmək haqqı</label>
+                                    <input id="salary" class="form-control" asp-for="newSalary" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label">Yeni vəzifəyə başlama tarixi</label>
+                                    <input class="form-control" type="date" asp-for="WorkerNewWhenStarted" />
+                                    <span asp-validation-for="WorkerNewWhenStarted" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-5 pb-4">
+                                <a class="btn red btn-outline float-right" asp-action="Recruitment">
+                                    <i class="fa fa-close"></i> İmtina
+                                </a>
+                            </div>
+                            <div class="col-xl-6 mt-5 pb-4">
+                                <button class="btn bg-color btn-rounded positionChanged" >
+                                    <i class="fa fa-save"></i>
+                                    Yadda saxla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

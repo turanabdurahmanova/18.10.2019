@@ -1,0 +1,170 @@
+﻿@model CompanyPaginationViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="page-wrapper padding-top">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"><i class="fas fa-list mr-3"></i> Şirkətlərin siyahısı</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light">
+                    <form>
+                        <div class="form-row employee">
+                            <div class="form-group col-xl-5 ml-0">
+                                <input id="companyName" class="form-control search-input" type="text" placeholder="Şirkətin adı" />
+                            </div>
+                            <div class="col-xl-1">
+                                <button type="submit" class="btn btn-block bg-color searchCompany"><i class="fas fa-search"></i> </button>
+                            </div>
+
+                            <div class="col-xl-2 text-right offset-xl-2">
+                                <a asp-action="Create" class="btn bg-color text-white btn-rounded float-right">
+                                    <i class="fa fa-plus"></i>
+                                    Şirkət əlavə et
+                                </a>
+                            </div>
+
+                            @if (Model.PaginationModel.TotalPages != 1)
+                            {
+                                var currentPage = Model.PaginationModel.CurrentPage;
+
+                                <ul class="pagination float-right ml-3">
+
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                    @{
+                                        var startPaginationPage = currentPage;
+                                        if (currentPage == 3 || currentPage == 2)
+                                        {
+                                            startPaginationPage = currentPage - 1;
+                                        }
+                                        else if (currentPage != 1)
+                                        {
+                                            startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                        }
+                                    }
+
+                                    @for (int i = startPaginationPage; (i <= currentPage + 1 && i <= Model.PaginationModel.TotalPages); i++)
+                                    {
+                                        var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                    {
+                                                    { "page", i.ToString() }
+                                            };
+
+                                        var classAttr = "";
+
+                                        if (i == currentPage)
+                                        {
+                                            classAttr = "active";
+                                        }
+
+                                        <li class="page-item"><a class="page-link @classAttr" asp-controller="Company" asp-action="List" asp-all-route-data="page">@i</a></li>
+                                    }
+
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                </ul>
+                            }
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <span id="companyNotFoundError" class="text-danger mt-3 bold" style="font-size:20px;"></span>
+            </div>
+        </div>
+
+        <div class="row companyClone" style="margin-top:6px;">
+            @foreach (var item in Model.Companies)
+            {
+                <div class="col-xl-3">
+                    <div class="profile-widget shop">
+                        <div class="dropdown profile-action">
+                            <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
+                            <div class="dropdown-menu departament dropdown-menu-right">
+                                <ul class="action departament">
+                                    <li>
+                                        <a title="Edit" asp-action="Edit" asp-route-id="@item.Id" class="btn bg-color"><i class="fas fa-pen"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Delete" data-id="@item.Id" class="bg-color btn text-white companyDelete">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Details" data-id="@item.Id" class="bg-color btn text-white" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h3 class="my-text">@item.Name</h3>
+                    </div>
+                </div>
+            }
+            <div class="col-xl-3 d-none" id="divCompany">
+                <div class="profile-widget">
+                    <div class="dropdown profile-action">
+                        <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
+                        <div class="dropdown-menu departament dropdown-menu-right">
+                            <ul class="action departament">
+                                <li>
+                                    <a title="Edit" class="btn bg-color"><i class="fas fa-pen"></i></a>
+                                </li>
+                                <li>
+                                    <button title="Delete" class="bg-color btn text-white companyDelete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <a title="Details" class="bg-color btn text-white">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 class="my-text"></h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*-----------modal company delete-----------------*@
+
+<div class="modal fade" id="companyDelete">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="delete-up"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <h5 class="text-center pt-4 bold">Şirkət: "<span id="companyDeleteName"></span>"</h5>
+            <h6 class="ml-5 text-center py-2 text-danger bold">Silmək isdədiyinizdən əminsinizmi ?</h6>
+            <div class="modal-footer">
+                <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                <button type="button" class="btn companyDeleteSave bg-danger text-white" data-dismiss="modal">
+                    <i class="fas fa-trash"></i>
+                    <span class="caption-subject bold ml-2">
+                        Sil
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

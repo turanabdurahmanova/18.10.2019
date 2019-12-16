@@ -1,0 +1,72 @@
+﻿@*@model WorkerViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="col-md-3">
+        <form method="post" asp-controller="Worker" asp-action="Create">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Employees" class="control-label"></label>
+                <select asp-for="SelectedEmployee" class="form-control" asp-items="@(new SelectList(Model.Employees,"Id","Firstname"))">
+                    <option value="">--Select Employee--</option>
+                </select>
+                <span asp-validation-for="Employees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <select asp-for="SelectedDepartment" class="departments form-control" asp-items="@(new SelectList(Model.Departmants,"Id","Name"))">
+                    <option value="">--Select Department--</option>
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Position"></label>
+                <select asp-for="SelectedPosition" class="form-control">
+                    <option value="">Select Position...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Email"></label>
+                <input class="form-control" asp-for="Email" />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="BeginDate"></label>
+                <input class="form-control" type="date" asp-for="BeginDate" />
+                <span asp-validation-for="BeginDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Worker" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+
+    @Html.Partial("_ValidationScriptsPartial")
+    <script>
+        $(function () {
+            $("#normalDropDown").chosen();
+        });
+
+        $(document).on("change", ".departments", function () {
+            var data = $(".departments").val();
+            if (data) {
+                $.ajax({
+                    url: "/PayrollAdmin/Ajax/LoadPositions",
+                    data: { departmentId: data },
+                    type: "POST",
+                    success: function (res) {
+                        $("#SelectedPosition").html(res);
+                    }
+                });
+            }
+            else {
+                $("#SelectedPosition").html("<option value=''>--Select Position--</option>");
+            }
+        });
+
+    </script>
+}*@

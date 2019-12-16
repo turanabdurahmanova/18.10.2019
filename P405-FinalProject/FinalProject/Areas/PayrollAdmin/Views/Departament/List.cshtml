@@ -1,0 +1,206 @@
+﻿@model DepartmantViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="page-wrapper" style="padding-top:20px;">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-sitemap mr-3"></i> Departamentlər</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light">
+                    <div class="form-row employee">
+                        <div class="form-group col-xl-5 ml-0">
+                            <input id="departamentName" class="form-control search-input" type="text" placeholder="Departamentin adı" />
+                        </div>
+                        <div class="col-xl-1">
+                            <button type="submit" class="btn btn-block bg-color searchDepartament"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="col-xl-6 text-right">
+                            <button class="btn bg-color text-white btn-rounded departamentCreate">
+                                <i class="fa fa-plus"></i>
+                                Departament əlavə et
+                            </button>
+                            @if (Model.PaginationModel.TotalPages != 1)
+                            {
+                                var currentPage = Model.PaginationModel.CurrentPage;
+
+                                <ul class="pagination ml-1 d-inline-flex">
+
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                    @{
+                                        var startPaginationPage = currentPage;
+                                        if (currentPage == 3 || currentPage == 2)
+                                        {
+                                            startPaginationPage = currentPage - 1;
+                                        }
+                                        else if (currentPage != 1)
+                                        {
+                                            startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                        }
+                                    }
+
+                                    @for (int i = startPaginationPage; (i <= currentPage + 1 && i <= Model.PaginationModel.TotalPages); i++)
+                                    {
+                                        var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
+                                                    { "page", i.ToString() }
+                                            };
+
+                                        var classAttr = "";
+
+                                        if (i == currentPage)
+                                        {
+                                            classAttr = "active";
+                                        }
+
+                                        <li class="page-item"><a class="page-link @classAttr" asp-controller="Departament" asp-action="List" asp-all-route-data="page">@i</a></li>
+                                    }
+
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                </ul>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <span id="departamentNotFoundError" class="text-danger mt-3 bold" style="font-size:20px;"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row divDepartamentClone">
+                    @foreach (var item in Model.Departmants)
+                    {
+                        <div class="col-xl-3">
+                            <div class="profile-widget departament shop">
+                                <div class="dropdown profile-action">
+                                    <a class="action-icon departament dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    </a>
+                                    <div class="dropdown-menu departament dropdown-menu-right">
+                                        <ul class="action departament">
+                                            <li>
+                                                <a title="Edit" data-id="@item.Id" class="bg-color btn text-white departamentEdit"><i class="fas fa-pen"></i></a>
+                                            </li>
+                                            <li>
+                                                <a title="Delete" data-id="@item.Id" class="bg-color btn departamentDelete text-white">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h4>@item.Name</h4>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-xl-3 d-none" id="divDepartament">
+                        <div class="profile-widget departament">
+                            <div class="dropdown profile-action">
+                                <a class="action-icon departament dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu departament dropdown-menu-right">
+                                    <ul class="action departament">
+                                        <li>
+                                            <button title="Edit" data-id="" class="bg-color btn text-white departamentEdit"><i class="fas fa-pen"></i></button>
+                                        </li>
+                                        <li>
+                                            <button title="Delete" data-id="" class="bg-color btn departamentDelete text-white">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h4></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*---------------------------------------------------- Departament create -------------------------------------------------*@
+
+<div class="modal fade" id="departamentCreate">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content m-c-b">
+            <div class="modal-header">
+                <h5 class="page-title">Departament əlavə edin</h5>
+                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body m-b-t">
+                <input id="departmantNameCreate" class="form-control mt-4 search-input" value="" placeholder="Departamentin adını daxil edin..."/>
+            </div> 
+            <div class="modal-footer m-f-t">
+                <button type="button" class="btn m-b-b" data-dismiss="modal">
+                    <span class="caption-subject bold my-text ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn departamentCreateSave bg-color" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Əlavə et </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*---------------------------------------------------- Departament edit -------------------------------------------------*@
+
+<div class="modal fade" id="departamentEdit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content m-c-b">
+            <div class="modal-header">
+                <h5 class="page-title"> Departamentin adını redaktə et</h5>
+                <button type="button" class="close my-text opacity"  data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body m-b-t">
+                <input id="departmantNameUpdate" class="form-control search-input mt-4" value="" />
+            </div>
+            <div class="modal-footer m-f-t">
+                <button type="button" class="btn departamentEditSave bg-color" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*---------------------------------------------------- Departament delete -------------------------------------------------*@
+
+<div class="modal fade" id="departamentDelete">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="delete-up"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <h5 class="text-center pt-4 bold">Departament: "<span id="departmantNameDelete"></span>"</h5>
+            <h6 class="text-center py-2 text-danger bold">Silmək isdədiyinizdən əminsinizmi ?</h6>
+            <div class="modal-footer d-flex">
+                <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                <button type="button" class="btn departamentDeletedSave bg-danger text-white" data-dismiss="modal">
+                    <i class="fas fa-trash"></i>
+                    <span class="caption-subject bold ml-2"> Sil </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

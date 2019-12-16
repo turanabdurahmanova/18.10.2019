@@ -1,0 +1,245 @@
+﻿@model ShopPaginationViewModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white">Mağazalar</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light">
+                    <div class="form-row employee">
+                        <div class="form-group col-xl-5 ml-0">
+                            <input id="shopAjaxName" class="form-control search-input" type="text" placeholder="Mağazanın adı" />
+                        </div>
+                        <div class="col-xl-1">
+                            <button type="submit" class="btn btn-block bg-color searchShop"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="col-xl-4 ml-4 text-right">
+                            <button class="btn bg-color text-white btn-rounded float-right shopCreate">
+                                <i class="fa fa-plus"></i>
+                                Mağaza əlavə et
+                            </button>
+                        </div>
+                        @if (Model.PaginationModel.TotalPages != 1)
+                        {
+                            var currentPage = Model.PaginationModel.CurrentPage;
+
+                            <ul class="pagination float-right ml-2">
+
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                @{
+                                    var startPaginationPage = currentPage;
+                                    if (currentPage == 3 || currentPage == 2)
+                                    {
+                                        startPaginationPage = currentPage - 1;
+                                    }
+                                    else if (currentPage != 1)
+                                    {
+                                        startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                    }
+                                }
+
+                                @for (int i = startPaginationPage; (i <= currentPage + 1 && i <= Model.PaginationModel.TotalPages); i++)
+                                {
+                                    var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                    { "page", i.ToString() }
+                                            };
+
+                                    var classAttr = "";
+
+                                    if (i == currentPage)
+                                    {
+                                        classAttr = "active";
+                                    }
+
+                                    <li class="page-item"><a class="page-link @classAttr" asp-controller="Shop" asp-action="List" asp-all-route-data="page">@i</a></li>
+                                }
+
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <span id="shopNotFoundError" class="text-danger mt-3 bold" style="font-size:20px;"></span>
+            </div>
+        </div>
+
+        <div class="row divShopClone mt-1">
+
+            @foreach (var item in Model.Shops)
+            {
+                <div class="col-xl-3">
+                    <div class="profile-widget shop pb-2">
+                        <h3 class="my-text">
+                            @item.Name
+                        </h3>
+                        <div class="d-flex justify-content-center mt-4">
+                            <a title="Edit" data-id="@item.Id" class="shopEdit my-btn btn"><i class="fas fa-pen"></i></a>
+                            <input type="hidden" value="@item.CompanyId" id="companyId" />
+                            <a title="Delete" data-id="@item.Id" class="shopDelete my-btn btn">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a title="DayProfit" data-id="@item.Id" class="dayProfit my-btn btn">
+                                <i class="fas fa-dollar-sign"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-xl-3 d-none" id="divShop">
+                <div class="profile-widget">
+                    <div class="dropdown profile-action">
+                        <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        </a>
+                        <div class="dropdown-menu shop dropdown-menu-right">
+                            <ul class="action shop">
+                                <li>
+                                    <button title="Edit" data-id="" class="btn bg-color shopEdit"><i class="fas fa-pen"></i></button>
+                                </li>
+                                <li>
+                                    <button title="Delete" data-id="" class="bg-color btn text-white shopDelete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 class="my-text"></h3>
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+</div>
+
+@*-------- shop delete ------------------------*@
+
+<div class="modal fade" id="shopDelete">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="delete-up"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <h5 class="text-center pt-4 bold">Mağaza: "<span id="shopName"></span>"</h5>
+            <h6 class="text-center py-2 text-danger bold">Silmək isdədiyinizdən əminsinizmi ?</h6>
+            <div class="modal-footer">
+                <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                <button type="button" class="btn shopDeleteSave text-white bg-danger text-center" data-dismiss="modal">
+                    <i class="fas fa-trash m-r-5"></i>
+                    <span class="caption-subject bold ml-2">
+                        Sil
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*-------- shop create ------------------------*@
+
+<div class="modal fade" id="shopCreate">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color" style="min-width:700px;">
+            <div class="modal-header">
+                <button class="btn text-white btn-rounded float-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Mağaza əlavə et
+                </button>
+                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <input id="shopNameCreate" class="form-control" placeholder="mağaza" style="margin-right:30px;height:40px!important;" />
+                    <select id="selectCompany" class="form-control" asp-items="Model.Componies" style="height:40px!important;">
+                        <option value="">şirkət</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                    <span class="caption-subject bold ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn shopCreateSave border-white" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*-------- shop edit ------------------------*@
+
+<div class="modal fade" id="shopEdit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color">
+            <div class="modal-header">
+                <button class="btn text-white btn-rounded">
+                    <i class="fa fa-pencil mr-2"></i> Mağazanın adını redaktə et
+                </button>
+                <button type="button" class="close text-white opacity" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input id="shopNameUpdate" class="form-control" value="" />
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                    <span class="caption-subject bold ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn shopEditSave border-white" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2">Yadda saxla</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*-------- shop dayProfit ------------------------*@
+
+<div class="modal fade" id="dayProfit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color" style="min-width:700px;">
+            <div class="modal-header">
+                <button class="btn text-white btn-rounded">
+                    <i class="fas fa-dollar-sign"></i>
+                    Mağazalar üzrə günlük gəlir əlavə et
+                </button>
+                <button type="button" class="close text-white opacity" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <input id="shopProfit" class="form-control mr-3" placeholder="mağazanın günlük qazancını daxil et" />
+                    <input id="shopProfitDate" class="form-control" type="date" />
+                    <span class="date-icon"> <i class="fas fa-calendar-times"></i></span>
+                </div>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                    <span class="caption-subject bold ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn shopModalProfitCreate border-white" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

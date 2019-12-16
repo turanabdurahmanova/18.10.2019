@@ -1,0 +1,86 @@
+﻿@*@model IEnumerable<WorkerViewModel>
+@{ 
+    ViewData["Title"] = "List";
+}
+
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-xl-4">
+                    <h2 class="page-title">İşçilərin siyahısı</h2>
+                </div>
+                <div class="col-xl-8 text-right">
+                    <a asp-action="Create" class="btn bg-color text-white btn-rounded float-right">
+                        <i class="fa fa-plus"></i>
+                        İşçi əlavə et
+                    </a>
+                </div>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-xl-3">
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Adı">
+                    </div>
+                    <div class="form-group col-xl-3">
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Email">
+                    </div>
+                    <div class="col-xl-3 form-group">
+                        <select class="custom-select my-select">
+                            <option selected>Rolu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 form-group">
+                        <div class="active-cyan-4 mb-4">
+                            <input class="form-control" type="text" placeholder="Axtarış" aria-label="Search">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-striped table-bordered employees">
+
+                <thead>
+                    <tr>
+                        <th>Ad</th>
+                        <th>Soyad</th>
+                        <th>Email</th>
+                        <th>Vəzifə</th>
+                        <th>Departament</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Image" />
+                    @item.Fisrtname
+                </td>
+                <td>@item.Lastname</td>
+                <td>@item.Email</td>
+                <td>@item.Position</td>
+                <td>@item.Department</td>
+                <td>
+            <a title="Edit" asp-action="Edit" asp-route-id="@item.Id" class="btn my-text"><i class="fas fa-pen"></i></a>
+            <a title="Details" asp-action="Details" asp-route-id="@item.Id" class="btn my-text">
+                <i class="fas fa-info-circle"></i>
+            </a>
+            @if (Model.Count() > 1)
+            {
+                <a title="Delete" asp-action="Delete" asp-route-id="@item.Id" class="btn my-text">
+                    <i class="fas fa-trash"></i>
+                </a>
+            }
+
+        </td>
+            </tr>
+                }
+
+            </table>
+        </div>
+    </div>*@
+

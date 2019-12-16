@@ -1,0 +1,157 @@
+﻿@model EmployeeEditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container padding-top">
+    <div class="row">
+        <div class="col-xl-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="list-row bg-color">
+                    <div class="col-xl-12 my-border">
+                        <h5 class="page-title text-white"><i class="fa fa-pencil mr-3"></i> Namizədin məlumatını redaktə et</h5>
+                    </div>
+                </div>
+                <div class="portlet light mb" style="padding: 4% 20px 28px 15px;">
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-xl-9">
+
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="Firstname">Ad</label>
+                                            <input asp-for="Firstname" class="form-control mb-2 e-i-h" />
+                                            <span asp-validation-for="Firstname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="Fathername">Ata adı</label>
+                                            <input asp-for="Fathername" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Fathername" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="Lastname">Soyad</label>
+                                            <input asp-for="Lastname" class="form-control mb-2 e-i-h" />
+                                            <span asp-validation-for="Lastname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="Birthday">Doğum günü</label>
+                                            <input asp-for="Birthday" class="form-control mb-2 e-i-h" />
+                                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="PassportExpirationDate">Passportun son istifadə tarixi</label>
+                                            <input asp-for="PassportExpirationDate" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="PassportExpirationDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label">Cinsi</label>
+                                            <select class="form-control e-i-h" asp-for="GenderType" asp-items="Html.GetEnumSelectList<Gender>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="GenderType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Email" class="control-label e-label">Email</label>
+                                            <input asp-for="Email" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="Phone">Tel</label>
+                                            <input asp-for="Phone" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="PassportNumber">Passport nömrəsi</label>
+                                            <input asp-for="PassportNumber" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="PassportNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="EducationType">Təhsili</label>
+                                            <select class="form-control e-i-h" asp-for="EducationType" asp-items="Html.GetEnumSelectList<Education>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="EducationType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="MarialStatusType">Ailə vəziyyəti</label>
+                                            <select class="form-control e-i-h" asp-for="MarialStatusType" asp-items="Html.GetEnumSelectList<MarialStatus>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="MarialStatusType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="DistrictRegistration">Qeydiyyat yeri</label>
+                                            <input asp-for="DistrictRegistration" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="DistrictRegistration" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label" asp-for="CurrentAddres">Faktiki ünvan</label>
+                                            <input asp-for="CurrentAddres" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="CurrentAddres" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-3 img-height">
+                                <div class="e-form-group form-group-height">
+                                    <img src="~/img/@Model.Image" />
+                                    <input asp-for="Photo" class="form-control e-i-h" />
+                                    <span asp-validation-for="Image" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row pt-3">
+                            <div class="col-xl-12">
+                                <a class="btn red btn-outline" asp-action="List">
+                                    <i class="fa fa-close"></i> İmtina
+                                </a>
+                                <button type="submit" class="btn green btn-circle-right btn-outline border ml-2 float-right" asp-action="Edit">
+                                    <i class="fa fa-save"></i> Dəyişikliyi yadda saxla
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

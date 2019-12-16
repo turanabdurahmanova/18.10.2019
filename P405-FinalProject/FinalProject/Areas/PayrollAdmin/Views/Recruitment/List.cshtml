@@ -1,0 +1,189 @@
+﻿@model RecruitmentPaginationViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"><i class="fas fa-users mr-3"></i> İşçilərin siyahısı</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light mb" style="padding: 12px 20px 12px;">
+                    <form>
+                        <div class="form-row employee mb-4">
+                            <div class="form-group col-xl-5 ml-0">
+                                <input id="recruitmentName" class="form-control search-input" type="text" placeholder="İşçinin adı" />
+                            </div>
+                            <div class="col-xl-1">
+                                <button type="submit" class="btn btn-block bg-color searchRecruitment"><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="col-xl-6 text-right">
+                                <a asp-action="Create" class="btn bg-color text-white btn-rounded">
+                                    <i class="fa fa-plus"></i>
+                                    İşçi əlavə et
+                                </a>
+                                @if (Model.PaginationModel.TotalPages != 1)
+                                {
+                                    var currentPage = Model.PaginationModel.CurrentPage;
+
+                                    <ul class="pagination d-inline-flex ml-1">
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                        @{
+                                            var startPaginationPage = currentPage;
+                                            if (currentPage == 2)
+                                            {
+                                                startPaginationPage = currentPage - 1;
+                                            }
+                                            else if (currentPage == 3)
+                                            {
+                                                startPaginationPage = currentPage - 2;
+                                            }
+                                            else if (currentPage != 1)
+                                            {
+                                                startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                            }
+                                        }
+
+                                        @for (int i = startPaginationPage; (i <= currentPage + 2 && i <= Model.PaginationModel.TotalPages); i++)
+                                        {
+                                            var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                    { "page", i.ToString() }
+                                            };
+
+                                            var classAttr = "";
+
+                                            if (i == currentPage)
+                                            {
+                                                classAttr = "active";
+                                            }
+
+                                            <li class="page-item"><a class="page-link @classAttr" asp-controller="Recruitment" asp-action="List" asp-all-route-data="page">@i</a></li>
+                                        }
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    </form>
+
+                    <span id="recruitmentNameError" class="text-danger mt-3 bold" style="font-size:20px;"></span>
+
+                    <table class="table table-striped table-bordered recruitment mt-5">
+                        <thead>
+                            <tr>
+                                <th><i class="far fa-image"></i></th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Role</th>
+                                <th>Tel</th>
+                                <th>Email</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model.RecruitmentList)
+                        {
+                            <tr>
+                                <td><img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Employee.Image" /></td>
+                                <td> @item.Employee.Firstname</td>
+                                <td>@item.Employee.Lastname</td>
+                                <td>@item.Role</td>
+                                <td>@item.Employee.Phone</td>
+                                <td>@item.Employee.Email</td>
+                                <td>
+                                    <a title="Edit" asp-action="Edit" asp-route-id="@item.Employee.Id" class="btn my-text"><i class="fas fa-pen"></i></a>
+                                    <a title="Details" asp-action="Details" asp-route-id="@item.Employee.Id" class="btn my-text">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a title="Delete" data-id="@item.Employee.Id" class="btn my-text deleteRecruitment">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    @if (item.Employee.AppUser == null)
+                                    {
+                                        <a asp-action="AddRole" asp-route-id="@item.Employee.Id" id="addrecruitment" class="btn bg-color text-white btn-rounded float-right">
+                                            <i class="fa fa-plus"></i>
+                                            rol əlavə et
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="EditRole" asp-route-id="@item.Employee.Id" id="addrecruitment" class="btn bg-color text-white btn-rounded float-right">
+                                            <i class="fa fa-plus mr-3"></i>
+                                            rolu deyis
+                                        </a>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                        <tr class="d-none" id="trRecruitment">
+                            <td><img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a title="Edit" class="btn my-text"><i class="fas fa-pen"></i></a>
+                                <a title="Details" class="btn my-text"><i class="fas fa-info-circle"></i></a>
+                                <a title="Delete" data-id="" class="btn my-text deleteRecruitment"><i class="fas fa-trash"></i></a>
+                                <a id="addrecruitment" class="btn bg-color text-white btn-rounded float-right"><i class="fa fa-plus mr-2"></i>rol əlavə et</a>
+                                @*@if (item.Employee.AppUser == null)
+                                {
+                                    <a asp-action="AddRole" asp-route-id="@item.Employee.Id" id="addrecruitment" class="btn bg-color text-white btn-rounded float-right">
+                                        <i class="fa fa-plus"></i>
+                                        rol əlavə et
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="EditRole" asp-route-id="@item.Employee.Id" id="addrecruitment" class="btn bg-color text-white btn-rounded float-right">
+                                        <i class="fa fa-plus mr-3"></i>
+                                        rolu deyis
+                                    </a>
+                                }*@
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+   
+    </div>
+</div>
+
+@*-------- Recruitment delete ---------------------------------------------------------------------------------------------------*@
+
+<div class="modal fade" id="deleteRecruitment">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="delete-up"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <h5 class="text-center pt-4 bold">İşçi: "<span id="recruitmentNameDelete"></span>"</h5>
+            <h6 class="ml-5 text-center py-2 text-danger bold">Silmək isdədiyinizdən əminsinizmi ?</h6>
+            <div class="modal-footer">
+                <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                <button type="button" class="btn deleteRecruitmentSave text-white bg-danger" data-dismiss="modal">
+                    <i class="fas fa-trash"></i>
+                    <span class="caption-subject bold ml-2">
+                        Sil
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

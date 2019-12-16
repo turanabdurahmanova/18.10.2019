@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Payroll>
+@{
+    ViewData["Title"] = "List";
+}
+<div class="page-wrapper padding-top">
+    <div class="container">
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-calculator mr-3"></i>  Aylıq hesabat</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light mb payroll-list-scroll" style="padding: 17px 20px 20px 15px;">
+                    <form>
+                        <div class="row mt-5 mb-3">
+                            <div class="col-xl-5">
+                                <input id="payrollName" class="form-control search-input" type="text" placeholder="Maaş alan işçi" />
+                            </div>
+                            <div class="col-xl-5">
+                                <input id="payrollDate" class="form-control search-input" type="date" name="Date" />
+                            </div>
+                            <div class="col-xl-2">
+                                <button type="submit" class="btn btn-block bg-color payrollSearch"><i class="fas fa-sync-alt"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <span id="successPayrollList" class="my-text bold" style="font-size:20px;"></span>
+                            <span id="falsePayrollList" class="text-danger bold"></span>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered payrolls mt-5">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="far fa-image"></i>
+                                </th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Şirkət</th>
+                                <th>Vəzifə</th>
+                                <th>Mağaza</th>
+                                <th>Maaş</th>
+                                @*<th>Bonus</th>
+                                <th>Cərimə</th>*@
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Recruitment.Employee.Image" /></td>
+                                    <td>@item.Recruitment.Employee.Firstname</td>
+                                    <td>@item.Recruitment.Employee.Lastname</td>
+                                    <td>@item.Recruitment.Shop.Company.Name</td>
+                                    <td> @item.Recruitment.Position.Name </td>
+                                    <td>@item.Recruitment.Shop.Name</td>
+                                    <td>@item.TotalSalary</td>
+                                    @*<td>@item.Recruitment.Amount</td>*@
+                                    @*<td>@item.Recruitment.Amount</td>*@
+                                </tr>
+                            }
+                            <tr id="trPayroll" class="d-none">
+                                <td> <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/" /></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

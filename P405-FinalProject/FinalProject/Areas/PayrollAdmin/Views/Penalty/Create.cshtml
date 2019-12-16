@@ -1,0 +1,167 @@
+﻿@model PenaltyViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+        <div class="row list-row bg-color">
+            <div class="col-xl-12  my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-minus-square mr-3"></i> Bu ay cəriməsi olmayan işçilər</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light mb" style="padding: 10px 20px 10px 15px;">
+                    <form>
+                        <div class="row my-5">
+                            <div class="col-xl-5">
+                                <input id="recruitmentPenaltyCreate" class="form-control search-input" type="text" placeholder="Bu ayda cəriməsi olmayan işçi">
+                            </div>
+
+                            <div class="col-xl-1 pl-0">
+                                <button type="submit" class="btn btn-block bg-color searchPenaltyCreate"><i class="fas fa-sync-alt"></i></button>
+                            </div>
+                            <div class="col-xl-6">
+                                @{
+                                    var currentPage = Model.PaginationModel.CurrentPage;
+
+                                    <ul class="pagination float-right my-pagination">
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                        @{
+                                            var startPaginationPage = currentPage;
+                                            if (currentPage == 2)
+                                            {
+                                                startPaginationPage = currentPage - 1;
+                                            }
+                                            else if (currentPage == 3)
+                                            {
+                                                startPaginationPage = currentPage - 2;
+                                            }
+                                            else if (currentPage != 1)
+                                            {
+                                                startPaginationPage = (currentPage > 3) ? currentPage - 1 : currentPage;
+                                            }
+                                        }
+
+                                        @for (int i = startPaginationPage; (i <= currentPage + 1 && i <= Model.PaginationModel.TotalPages); i++)
+                                        {
+                                            var page = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                                                                                                            {
+                                    { "page", i.ToString() }
+                                };
+
+                                            var classAttr = "";
+
+                                            if (i == currentPage)
+                                            {
+                                                classAttr = "active";
+                                            }
+
+                                            <li class="page-item"><a class="page-link @classAttr" asp-controller="Penalty" asp-action="Create" asp-all-route-data="page">@i</a></li>
+                                        }
+
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+                    <span id="recruitmentPenaltyCreateError" class="text-danger d-block mb-4 bold" style="font-size:20px;"></span>
+
+                    <table class="table table-striped table-bordered penaltyCreateClone">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="far fa-image"></i>
+                                </th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Ata adı</th>
+                                <th>Email</th>
+                                <th>Vəzifə</th>
+                                <th>Mağaza</th>
+                                <th>Cərimə</th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model.Recruitments)
+                        {
+                            <tr>
+                                <td>
+                                    <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Employee.Image" />
+                                </td>
+                                <td>
+                                    @item.Employee.Firstname
+                                </td>
+                                <td>@item.Employee.Lastname</td>
+                                <td>@item.Employee.Fathername</td>
+                                <th>@item.Employee.Email</th>
+                                <td>@item.Position.Name</td>
+                                <td>@item.Shop.Name</td>
+                                <td>
+                                    <button type="button" data-id="@item.Id" class="btn bg-color penalty" data-toggle="modal">
+                                        <i class="fas fa-minus-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                        <tr class="d-none" id="penaltyCreateClone">
+                            <td>
+                                <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/" />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button type="button" data-id="" class="btn bg-color penalty" data-toggle="modal">
+                                    <i class="fas fa-minus-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* --------- Penalty add -----------------------------------------------------------------------------------------------------*@
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color">
+            <div class="modal-header">
+                <button class="btn text-white btn-rounded" style="font-size:20px;">
+                    <i class="fa fa-plus mr-3"></i>
+                    Cərimənin məbləğini və səbəbini daxil edin.
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="elements-form">
+                    <input id="penaltyAmountCreate" type="text" class="name-input form-control" placeholder="azn">
+                </div>
+                <div class="elements-form">
+                    <input id="penaltyAmountReason" type="text" class="name-input form-control" placeholder="səbəb">
+                </div>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                    <span class="caption-subject bold ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn penaltyCreate border-white" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

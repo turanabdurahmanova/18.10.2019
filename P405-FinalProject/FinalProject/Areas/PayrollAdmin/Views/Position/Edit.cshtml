@@ -1,0 +1,42 @@
+﻿@model Position
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="offset-md-1 col-md-9">
+            <form method="post" enctype="multipart/form-data">
+                <div class="portlet light">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption">
+                            <i class="fa fa-pencil m-r-5 my-text"></i>
+                            <span class="caption-subject bold my-text ml-2"> Redaktə et </span>
+                        </div>
+                        <div class="actions hidden">
+                            <div class="btn-group btn-group-circle">
+                                <button class="btn red btn-outline" asp-action="List">
+                                    <i class="fa fa-close"></i> İmtina
+                                </button>
+                                <button class="btn green btn-circle-right btn-outline" asp-action="Edit">
+                                    <i class="fa fa-save"></i> Dəyişikliyi yadda saxla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="portlet-body tab-content current" data-tab="tab-2">
+                        <div class="row mt-3">
+                            <div class="col-xl-6">
+                                <label asp-for="Name">Mağaza</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @await Component.InvokeAsync("Position", Model.Departmant)
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

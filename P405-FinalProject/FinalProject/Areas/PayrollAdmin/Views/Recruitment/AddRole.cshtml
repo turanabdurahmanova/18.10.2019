@@ -1,0 +1,103 @@
+﻿@model AddRoleViewModel
+@{
+    ViewData["Title"] = "AddRole";
+}
+
+<div class="page-wrapper padding-top">
+    <div class="container">
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white">
+                    <i class="fas fa-user-tag mr-3"></i>
+                    İşçilərə rolun verilməsi
+                </h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light mb" style="padding: 20px 20px 1px 20px;">
+                    <div class="row formerwork" style="border:0px; margin-bottom:18px;">
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label asp-for="Employee.Firstname" class="my-label">Rol veriləcək işçinin adı</label>
+                                <input asp-for="Employee.Firstname" name="EmployeeId" class="form-control mb-2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label asp-for="Employee.Lastname" class="my-label">Rol veriləcək işçinin soyadı</label>
+                                <input asp-for="Employee.Lastname" class="form-control mb-2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label asp-for="Employee.Fathername" class="my-label">Rol veriləcək işçinin ata adı</label>
+                                <input asp-for="Employee.Fathername" class="form-control mb-2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xl-4 mt-4">
+                            <div class="form-group">
+                                <label asp-for="Employee.Email" class="my-label">Rol veriləcək işçinin emaili</label>
+                                <input asp-for="Employee.Email" class="form-control mb-2" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xl-4 mt-4">
+                            <div class="form-group">
+                                <label asp-for="Employee.Phone" class="my-label">Rol veriləcək işçinin telefon nömrəsi</label>
+                                <input asp-for="Employee.Phone" class="form-control mb-2" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" asp-action="AddRole" asp-controller="Recruitment">
+                        <input type="hidden" name="id" value="@Model.Employee.Id" />
+                        <div class="row formerwork" style="border:2px solid #778899;">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="my-label"><span class="text-danger"> * </span>Rol</label>
+                                    <select class="form-control search-input" asp-items="Model.Roles" asp-for="RoleId">
+                                        <option value=""></option>
+                                    </select>
+                                    <span id="positionChangedError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="control-label my-label"><span class="text-danger"> * </span> Username</label>
+                                    <input class="form-control search-input" asp-for="AppUser.UserName" autocomplete="off"/>
+                                    <span asp-validation-for="AppUser.UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label my-label"><span class="text-danger"> * </span> Password</label>
+                                    <input class="form-control search-input" type="password" asp-for="Password" autocomplete="off" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-3">
+                                <div class="form-group">
+                                    <label class="control-label my-label"><span class="text-danger"> * </span> Təkrar password</label>
+                                    <input class="form-control search-input" asp-for="ConfirmPassword" autocomplete="off" type="password" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 mt-3 pb-1">
+                                <a class="btn red btn-outline float-left" asp-action="List">
+                                    <i class="fa fa-close"></i> İmtina
+                                </a>
+                            </div>
+                            <div class="col-xl-6 mt-3 pb-1">
+                                <button class="btn bg-color btn-rounded float-right positionChanged">
+                                    <i class="fa fa-save"></i>
+                                    Yadda saxla
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

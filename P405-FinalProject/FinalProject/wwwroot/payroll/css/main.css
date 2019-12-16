@@ -1,0 +1,1130 @@
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.875rem;
+    color: #666;
+    background-color: #eef1f5;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.modal-p-c {
+    width: 650px;
+}
+
+.recruitment-create {
+    height: 695px;
+    overflow-y: scroll;
+}
+
+.modal-p-c label {
+    display: none;
+}
+
+.payroll-list-scroll {
+    overflow-y: scroll;
+    height: 599px;
+}
+
+.border-white {
+    border: 1px solid white;
+}
+
+.i-b-c {
+    border: 1px solid #778899;
+    color: #778899;
+}
+
+.opacity {
+    opacity: 1;
+}
+
+.date-icon {
+    position: absolute;
+    color: #778899;
+    right: 50px;
+    top: 22px;
+    font-size: 18px;
+}
+
+    .date-icon.atten {
+        top: 6px;
+    }
+
+    .date-icon.absence {
+        right: 36px;
+        top: 6px;
+    }
+
+.m-c-b {
+    border: 3px solid #606b76;
+}
+
+.b-m-l {
+    margin-left: 15%;
+}
+
+.search-input {
+    border: 1px solid #778899;
+}
+
+.e-i-h {
+    height: 30px;
+    border: 1px solid #778899;
+}
+
+.e-form-group {
+    margin-bottom: 2rem;
+}
+
+.m-b-b {
+    border: 1px solid #778899;
+}
+
+.e-label {
+    font-size: 16px;
+    margin-left: 14px;
+    color: black;
+}
+
+.my-btn {
+    padding: 5px 10px 3px 10px;
+    border: 1px solid #778899;
+    border-radius: 4px;
+    margin-right: 3%;
+}
+
+.m-b-t {
+    border-top: 1px solid #778899;
+}
+
+.m-f-t {
+    border-top: 0px;
+}
+
+.delete-up {
+    height: 20px;
+    background: #dc3545;
+}
+
+.delete-m-r {
+    margin-right: 31%;
+}
+
+.pagination .active {
+    background: #778899;
+    color: white;
+}
+
+    .pagination .active:hover {
+        background: #64545400;
+        color: #778899;
+    }
+
+.pagination li a {
+    border: 1px solid #778899;
+    background: white;
+    color: #778899;
+}
+
+.my-pagination {
+    background: white;
+    color: #778899;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.pagination li:hover a {
+    background: #778899;
+    color: white;
+}
+
+input[type="checkbox"] {
+    height: 25px !important;
+    vertical-align: text-top;
+    min-width:100%;
+}
+
+.my-page-item {
+    color: white;
+    padding: 5px 20px;
+    border-right: 1px solid white;
+}
+
+.elements-form {
+    margin-top: 15px;
+}
+
+    .elements-form .name-input {
+        height: 35px !important;
+    }
+
+.label-style {
+    font-size: 18px;
+    margin-bottom: 16px;
+    margin-left: 2%;
+}
+
+.dropdown-menu {
+    min-width: 3rem;
+    height: 110px;
+    top: -10px;
+    left: 88px;
+}
+
+    .dropdown-menu.departament {
+        height: 56px;
+    }
+
+    .dropdown-menu.shop {
+        height: 109px;
+        min-width: 250px;
+        border: 1px solid #778899;
+    }
+
+.action {
+    padding: 5px 10px;
+}
+
+    .action li {
+        list-style-type: none;
+        margin-bottom: 5px;
+    }
+
+    .action.departament {
+        padding: 0px 10px;
+    }
+
+        .action.departament li {
+            display: inline-block;
+        }
+
+.modal-bg-color {
+    background: #3f4b57;
+    color: white;
+}
+
+    .modal-bg-color button {
+        color: white;
+    }
+
+.modal-body.delete {
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+}
+
+h4.delete {
+    padding-left: 12%;
+}
+
+ul:last-child li:nth-child(5) {
+    border-right: 0px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.form-row.absence {
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+    .form-row.absence .col-xl-3 {
+        margin-right: 4%;
+    }
+
+        .form-row.absence .col-xl-3 input {
+            height: 40px !important;
+        }
+
+        .form-row.absence .col-xl-3:nth-child(3) {
+            margin-top: 30px;
+        }
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.bg-color {
+    background: #778899 !important;
+    border: 1px solid #778899 !important;
+    color: white !important;
+}
+
+.my-text {
+    color: #778899 !important;
+}
+
+.page-title {
+    color: #778899;
+    font-weight: bold;
+}
+
+header {
+    background-color: #778899;
+    height: 50px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.logout-pt {
+    margin-top: 3px;
+}
+
+.user-img {
+    position: relative;
+}
+
+    .user-img .status {
+        bottom: -8px;
+    }
+
+.status.online {
+    background-color: #55ce63;
+}
+
+.user-img .status {
+    border: 2px solid #fff;
+    height: 10px;
+    position: absolute;
+    right: 6px;
+    width: 10px;
+    border-radius: 100%;
+}
+
+header ul.navbar-right {
+    padding-left: 80%;
+    display: flex;
+    list-style: none;
+}
+
+    header ul.navbar-right li {
+        color: white;
+        margin-right: 15px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
+        header ul.navbar-right li img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
+
+        header ul.navbar-right li:nth-child(2) {
+            padding-top: 5px;
+        }
+
+.header-left span {
+    color: white;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.header-left img {
+    width: 50px;
+}
+
+.user-img img {
+    width: 30px;
+    height: 30px;
+}
+
+#sidebar ul.components .list {
+    border-bottom: 1px solid white;
+    background: #778899;
+    padding: 5px 0;
+}
+
+    #sidebar ul.components .list a, #sidebar ul.components .list i {
+        color: white;
+        margin-right: 10px;
+    }
+
+    #sidebar ul.components .list .firts-li-a {
+        display: block;
+    }
+
+#sidebar .sidebar-header h3 {
+    color: black;
+}
+
+#sidebar ul.components ul.collapse {
+    background: white;
+    margin-top: 10px;
+    border-top: 1px solid #778899;
+}
+
+    #sidebar ul.components ul.collapse li {
+        padding: 10px 0 10px 35px;
+        border-bottom: 1px solid white;
+    }
+
+        #sidebar ul.components ul.collapse li a {
+            color: #778899;
+            font-size: 14px;
+        }
+
+        #sidebar ul.components ul.collapse li i {
+            color: #778899;
+        }
+
+#sidebar ul.components li:first-child {
+    border-top: 0px !important;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar .components {
+    margin-top: 17%;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 9%;
+    font-size: 1.1em;
+    color: #778899;
+    font-weight: bold;
+}
+
+    #sidebar ul li a span {
+        padding-left: 5%;
+    }
+
+#sidebar ul li:hover a {
+    color: black;
+    text-decoration: none;
+}
+
+#sidebar ul li:hover i {
+    color: black;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    border-top: 5px solid white;
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 15px;
+    border-radius: 3px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #3f4b57;
+    border-radius: 3px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: #3f4b57;
+    border-radius: 3px;
+}
+
+    #sidebar::-webkit-scrollbar-thumb:hover {
+        background: #3f4b57;
+    }
+
+#sidebar {
+    overflow-y: scroll;
+    min-width: 260px;
+    max-width: 260px;
+    height: 699px;
+    background: #778899;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+#sidebar .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+}
+/* ----------  Şirkətlər  ------- */
+.my-border {
+    border: 1px solid white;
+    padding: 11px 4px 5px 15px;
+    color: white;
+}
+
+.padding-top {
+    padding-top: 40px !important;
+}
+
+.my-label {
+    font-size: 16px;
+    color: #778899;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+.company-edit-input {
+    height: 40px !important;
+    padding: 4px 1px 4px 12px !important;
+    border: 1px solid #778899;
+}
+
+.company-padding {
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-top: 15px;
+}
+
+.my-delete {
+    background: #91242e;
+}
+
+    .my-delete h5 {
+        padding: 20px 0;
+        color: white;
+    }
+
+    .my-delete span {
+        color: white;
+    }
+
+.page-wrapper {
+    width: 100%;
+    padding-top: 2%;
+    border-left: 2px solid white !important;
+}
+
+.profile-widget {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+    .profile-widget.shop {
+        border: 1px solid #778899;
+        color: #778899;
+    }
+
+    .profile-widget.departament {
+        background-color: white;
+        height: 80px;
+        color: #778899;
+        position: relative;
+    }
+
+.profile-action {
+    position: unset !important;
+}
+
+.doctor-img {
+    cursor: pointer;
+    margin: 0 auto 15px;
+}
+
+    .doctor-img .avatar {
+        font-size: 24px;
+        height: 80px;
+        margin: 0;
+        width: 100%;
+    }
+
+.avatar > img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: contain;
+}
+
+.avatar {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.action-icon {
+    color: #777;
+    font-size: 18px;
+    padding: 0 10px;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+
+.profile-widget h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile-widget h4 {
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 12px;
+}
+
+.modal-footer.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+/* =============== ADD COMPANY ============================= */
+
+.portlet.light {
+    padding: 12px 20px 32px 15px;
+    background-color: #fff;
+}
+
+    .portlet.light.bonus-scroll {
+        overflow-y: scroll;
+        height: 600px;
+    }
+
+    .portlet.light.attendance, .portlet.light.attendanceList, .portlet.light.payrollList, .portlet.light.payrollSalary {
+        overflow-y: scroll;
+        height: 600px;
+    }
+
+.portlet {
+    margin-bottom: 28px !important;
+}
+
+.portlet {
+    box-shadow: 0 2px 3px 2px rgba(0,0,0,.03);
+}
+
+    .portlet.light > .portlet-title {
+        padding: 0;
+        min-height: 60px;
+        margin-top: 2%;
+    }
+
+    .portlet > .portlet-title {
+        margin-bottom: 10px;
+    }
+
+.profile-upload {
+    display: flex;
+}
+
+.upload-img {
+    margin-right: 10px;
+}
+
+    .upload-img img {
+        border-radius: 4px;
+        width: 80%;
+    }
+
+.upload-input {
+    width: 100%;
+}
+
+.portlet.light > .portlet-title > .caption {
+    padding: 10px 0;
+}
+
+.portlet > .portlet-title > .caption {
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.portlet.light > .portlet-title > .caption > i {
+    font-size: 15px;
+    margin-top: 3px;
+}
+
+.bold {
+    font-weight: 700 !important;
+}
+
+.portlet.light .portlet-body {
+    padding-top: 8px;
+}
+
+.md-radio-list {
+    margin: 5px 0;
+}
+
+    .md-radio-list .md-radio {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+.md-radio {
+    position: relative;
+}
+
+    .md-radio input[type=radio] {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .md-radio label {
+        cursor: pointer;
+        padding-left: 30px;
+    }
+
+        .md-radio label > span {
+            display: block;
+            position: absolute;
+            left: 0;
+        }
+
+    .md-radio input[type=radio]:checked ~ label > .check {
+        opacity: 1;
+    }
+
+    .md-radio label > .radio-check-active {
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        background: #778899;
+        z-index: 6;
+        border-radius: 50%;
+    }
+
+    .md-radio label > .box {
+        top: 0;
+        border: 2px solid #666;
+        height: 20px;
+        width: 20px;
+        border-radius: 50% !important;
+        z-index: 5;
+    }
+
+.resp-tab-active {
+    color: #778899;
+}
+
+.btn.btn-outline.blue {
+    border-color: #778899;
+    color: #778899;
+    background: 0 0;
+    padding: 3px 0;
+    border: 2px solid #778899;
+}
+
+    .btn.btn-outline.blue:hover {
+        border-color: #778899;
+        color: white;
+        border: 2px solid #778899;
+        background: #778899;
+    }
+
+.btn.mybtn {
+    padding: .1rem .9rem;
+}
+
+.btn-circle {
+    border-radius: 25px !important;
+}
+
+.portlet.light > .portlet-title > .actions {
+    padding: 6px 0 14px;
+}
+
+.portlet > .portlet-title > .actions {
+    float: right;
+    display: inline-block;
+}
+
+    .portlet > .portlet-title > .actions > .btn-group > .btn.btn-sm {
+        padding: 4px 10px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+.btn-group.btn-group-circle > .btn:first-child {
+    border-radius: 25px 0 0 25px !important;
+}
+
+.btn.btn-outline.red {
+    color: #e7505a;
+    border: 2px solid red;
+    padding: 5px 30px;
+    background: white;
+    font-weight: bold;
+}
+
+    .btn.btn-outline.red:hover {
+        color: white;
+        background: #e7505a;
+    }
+
+.portlet > .portlet-title > .actions > .btn-group > .btn {
+    padding: 4px 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.btn-group.btn-group-circle > .btn:last-child {
+    border-radius: 0 25px 25px 0 !important;
+}
+
+.btn-group.btn-group-circle > .companyDetails.btn:first-child {
+    border-radius: 25px !important;
+}
+
+.btn:not(.md-skip) {
+    box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.18);
+}
+
+.btn.btn-outline.green {
+    border-color: #778899;
+    color: #fff;
+    background: #778899;
+    border: 2px solid #778899;
+}
+
+    .btn.btn-outline.green:hover {
+        color: white;
+        background: #778899;
+    }
+
+.btn.blue:not(.btn-outline) {
+    color: #fff;
+    background-color: #778899;
+    border-color: #1f78b5;
+}
+
+.btn:not(.md-skip):hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,.2), 0 3px 6px rgba(0,0,0,.26);
+}
+
+.input-group-btn:last-child > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn:not(.md-skip) > i {
+    margin-top: 0;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.resp-tab-active {
+}
+
+.tab-content {
+    display: none;
+}
+
+    .tab-content.current {
+        display: block;
+    }
+/*-------------------------------------------------Company Details---------------------------------------------------------------*/
+.profile-view .profile-img-wrap {
+    height: auto;
+    width: 150px;
+}
+
+.profile-img-wrap {
+    position: absolute;
+    background: #fff;
+    overflow: hidden;
+}
+
+.profile-img {
+    cursor: pointer;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    width: 80px;
+}
+
+.profile-view .profile-img .avatar {
+    font-size: 24px;
+    height: 150px;
+    line-height: 150px;
+    margin: 0;
+    width: 150px;
+}
+
+.profile-view .profile-basic {
+    margin-left: 170px;
+}
+
+.profile-info-left {
+    border-right: 2px dashed #ccc;
+}
+
+.companyDetails a {
+    color: blue;
+    text-decoration: underline;
+}
+
+.list-row {
+    background: #778899;
+    border-radius: 4px;
+    width: 100%;
+    margin-left: 0px;
+}
+
+    .list-row ul {
+        font-size: 1rem;
+    }
+
+    .list-row .bg-color {
+        border: 1px solid white !important;
+    }
+/* =========================================================DEPARTMENT====================================================================== */
+.status-red, a.status-red {
+    background-color: #ffe5e6;
+    border: 1px solid #fe0000;
+    color: #fe0000;
+}
+
+.status-green, a.status-green {
+    background-color: #e5faf3;
+    border: 1px solid #00ce7c;
+    color: #00ce7c;
+}
+
+.custom-badge {
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
+    min-width: 95px;
+    padding: 1px 10px;
+    text-align: center;
+}
+
+td .action-icon {
+    top: -1px;
+    right: 159px;
+}
+/* ============================================================================EMPLOYEES=================================================== */
+.employees td img {
+    width: 28px;
+    height: 28px;
+}
+
+table.employees {
+    margin-top: 35px;
+}
+
+.employees td h2 {
+    display: inline;
+    font-size: 15px;
+}
+
+.employee .pagination {
+    font-size: 1rem;
+}
+
+.attendance {
+    font-size: 12px;
+}
+
+.employee .col-xl-3 {
+    margin-right: 1%;
+}
+
+.employee {
+    margin: 4% 0 1% 0;
+}
+
+    .employee .col-xl-5 {
+        margin-left: 6%;
+    }
+
+    .employee .form-control {
+        height: 39px !important;
+    }
+
+.my-select {
+    font-size: 12px;
+    padding: 4px 0 2px 12px;
+    height: 28px;
+}
+
+.form-check-inline input {
+    margin-right: 5px;
+}
+
+.form-check-inline label {
+    padding-top: 6px;
+    margin-right: 20px;
+}
+
+.my-error {
+    font-size: 13px;
+    margin-top: 8px;
+    display: block;
+}
+
+.formerwork {
+    padding: 20px;
+    border: 2px solid red;
+    margin: 4px;
+    margin-bottom: 30px;
+}
+
+.img-height {
+    max-height: 186px !important;
+    margin-top: 3%;
+}
+
+    .img-height form-group:nth-child(1) {
+        height: 100% !important;
+    }
+
+    .img-height form-group:nth-child(2) {
+        margin-top: 68px !important;
+    }
+
+.form-group-height {
+    height: 100% !important;
+}
+
+/* ======================================================LOGIN========================================================================= */
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+    .card-signin .card-title {
+        margin-bottom: 2rem;
+        font-weight: 300;
+        font-size: 1.5rem;
+    }
+
+    .card-signin .card-body {
+        padding: 2rem;
+    }
+
+.form-signin {
+    width: 100%;
+}
+
+    .form-signin .btn {
+        font-size: 80%;
+        letter-spacing: .1rem;
+        font-weight: bold;
+        padding: 1rem;
+        transition: all 0.2s;
+    }
+
+/* ======================================================ABSENCE========================================================================= */
+
+th.rotate {
+    height: 90px;
+    white-space: nowrap;
+    position: relative;
+}
+
+    th.rotate > div {
+        transform: translate(25px, 51px) rotate(90deg);
+        width: 0px;
+        position: absolute;
+        top: -52px;
+        left: -10px;
+    }
+
+        th.rotate > div > span {
+            padding: 5px 10px;
+        }
+
+.attendance th {
+    color: #778899;
+    font-weight: 100;
+    font-weight: bold;
+}
+
+.mb {
+    margin-bottom: 0px !important;
+}
+
+@media (min-width: 992px) and (max-width : 1200px) {
+
+}
+@media screen and (min-width: 1400px) {
+  
+}
+
+@media screen and (min-width: 1600px) {
+   
+}
+
+@media screen and (min-width: 1900px) {
+    #sidebar {
+        height: 890px;
+        min-width: 280px;
+        max-width: 280px;
+    }
+        #sidebar .components {
+            margin-top: 29%;
+        }
+    header {
+        height: 70px;
+    }
+    #sidebar ul li a {
+        padding: 10px;
+        padding-left: 9%;
+        font-size: 1.3em;
+    }
+    .page-wrapper {
+        padding-top: 4%;
+    }
+    .container {
+        max-width: 1465px;
+    }
+    #sidebar ul.components .list {
+        padding: 7px 0;
+    }
+    .my-border {
+        padding: 15px 4px 9px 15px;
+    }
+    .header-left span {
+        padding-left: 15px;
+        font-size: 1.3rem;
+    }
+    .portlet.light {
+        padding: 30px 20px 32px 15px!important;
+    }
+    table.recruitment{
+        margin-top:5%!important;
+    }
+    header ul.navbar-right li {
+        margin-right: 15px;
+        font-weight: bold;
+        padding-top: 15px;
+        font-size: 1.3rem;
+    }
+        header ul.navbar-right li img {
+            width: 50px;
+            height: 50px;
+        }
+        header ul.navbar-right li:nth-child(2) {
+            padding-top: 10px;
+        }
+}

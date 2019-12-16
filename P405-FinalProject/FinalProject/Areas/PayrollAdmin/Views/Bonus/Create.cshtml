@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Recruitment>
+@{
+    ViewData["Title"] = "EmployeeBonusList";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-dollar-sign mr-3"></i>Bu ayda bonusu olmayan işçilər</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light bonus-scroll mb" style="padding: 15px 20px 10px 15px;">
+                    <form style="margin-bottom:6%;">
+                        <div class="row my-5">
+                            <div class="col-xl-5">
+                                <input id="recruitmentBonusCreate" class="form-control search-input" type="text" placeholder="Bonus yazılacaq işçi">
+                            </div>
+                            <div class="col-xl-1 pl-0">
+                                <button type="submit" class="btn btn-block bg-color searchBonusCreate"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <span id="recruitmentBonusCreateError" class="text-danger mt-3 bold" style="font-size:20px;"></span>
+
+                    <table class="table table-striped table-bordered bonusCreate mt-5">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-image"></i></th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Ata adı</th>
+                                <th>Email</th>
+                                <th>Mağaza</th>
+                                <th>Vəzifə</th>
+                                <th> <i class="fas fa-dollar-sign my-text ml-3"></i></th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            <img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/@item.Employee.Image" />
+                        </td>
+                        <td> @item.Employee.Firstname</td>
+                        <td>@item.Employee.Lastname</td>
+                        <td>@item.Employee.Fathername</td>
+                        <th>@item.Employee.Email</th>
+                        <td>@item.Shop.Name</td>
+                        <td>@item.Position.Name</td>
+                        <td>
+                            <button type="button" data-id="@item.Id" class="dayProfit my-btn btn bonus my-text" data-toggle="modal">
+                                <i class="fas fa-dollar-sign"></i>
+                            </button>
+                        </td>
+                    </tr>
+                        }
+                        <tr class="d-none" id="bonusCreateClone">
+                            <td><img style="width:30px; height:30px; border-radius:100%;" class="img-thumnail" src="~/img/" /> </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button type="button" data-id="" class="dayProfit my-btn btn bonus my-text" data-toggle="modal">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+   
+    </div>
+</div>
+
+@* --------- Bonus add -----------------------------------------------------------------------------------------------------*@
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-bg-color">
+            <div class="modal-header">
+                <button class="btn text-white btn-rounded" style="font-size:21px;">
+                    <i class="fa fa-plus mr-3"></i>
+                    Bonusun məbləğini və səbəbini daxil edin.
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="elements-form">
+                    <input id="amount" type="text" class="name-input form-control" placeholder="bonusun məbləğini daxil edin">
+                </div>
+                <div class="elements-form">
+                    <input id="reason" type="text" class="name-input form-control" placeholder="bonusun səbəbini daxil edin">
+                </div>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn float-left border-white" data-dismiss="modal">
+                    <span class="caption-subject bold ml-2">İmtina </span>
+                </button>
+                <button type="button" class="btn save border-white" data-dismiss="modal">
+                    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+                    <span class="caption-subject bold ml-2"> Yadda saxla </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

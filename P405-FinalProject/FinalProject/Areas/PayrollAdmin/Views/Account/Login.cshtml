@@ -1,0 +1,53 @@
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/payroll/css/main.css" />
+    <title>Login</title>
+</head>
+<body>
+       <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <img src="~/payroll/img/logo.png" style="width:150px; height:150px;margin-left:27%;"> 
+                        <form class="form-signin" asp-action="Login" asp-controller="Account" method="post" style="margin-top: 30px;">
+
+                            <div class="form-group">
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control" autocomplete="off" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" class="form-control" autocomplete="off" type="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input asp-for="RememberMe" type="checkbox" class="custom-control-input" id="rememberMe">
+                                <label asp-for="RememberMe" class="custom-control-label" for="rememberMe">Remember password</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-block bg-color text-white text-uppercase" type="submit">Login</button>
+
+                            <hr class="my-4">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

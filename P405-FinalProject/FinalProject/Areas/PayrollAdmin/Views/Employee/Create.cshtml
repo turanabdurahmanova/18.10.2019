@@ -1,0 +1,154 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+        <div class="row">
+            <form method="post" class="my-form-margin" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-xl-12">
+                    <div class="portlet light mb" style="padding: 1px 20px 15px 15px;">
+
+                        <div class="portlet-title" style="border-bottom:1px solid #778899;">
+                            <div class="caption">
+                                <i class="fa fa-plus my-text" aria-hidden="true"></i>
+                                <span class="caption-subject bold my-text"> Namizəd əlavə et </span>
+                            </div>
+                            <div class="actions hidden">
+                                <div class="btn-group btn-group-circle">
+                                    <button class="btn red btn-outline" asp-action="List">
+                                        <i class="fa fa-close"></i> İmtina
+                                    </button>
+                                    <button class="btn green btn-circle-right btn-outline" asp-action="Create">
+                                        <i class="fa fa-save" aria-hidden="true"></i> Yadda saxla
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row pt-2">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Firstname"><span class="text-danger">* </span>Ad</label>
+                                    <input asp-for="Firstname" class="form-control" />
+                                    <span asp-validation-for="Firstname" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Lastname"><span class="text-danger">* </span>Soyad</label>
+                                    <input asp-for="Lastname" class="form-control" />
+                                    <span asp-validation-for="Lastname" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Fathername"><span class="text-danger">* </span>Ata adı</label>
+                                    <input asp-for="Fathername" class="form-control" />
+                                    <span asp-validation-for="Fathername" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Birthday"><span class="text-danger">* </span>Ad günü</label>
+                                    <input asp-for="Birthday" class="form-control" />
+                                    <span asp-validation-for="Birthday" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="CurrentAddres"><span class="text-danger">* </span>İndiki adresi</label>
+                                    <input asp-for="CurrentAddres" class="form-control" />
+                                    <span asp-validation-for="CurrentAddres" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="DistrictRegistration"><span class="text-danger">* </span>Qeydiyyatda olduğu yer</label>
+                                    <input asp-for="DistrictRegistration" class="form-control" />
+                                    <span asp-validation-for="DistrictRegistration" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="custom-file">
+                                    <label asp-for="Phone"><span class="text-danger">* </span>Tel</label>
+                                    <input asp-for="Phone" accept="image" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger my-error"> </span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="PassportNumber"><span class="text-danger">* </span>Şəxsiyyət vəsiqəsinin seriyası</label>
+                                    <input asp-for="PassportNumber" class="form-control" />
+                                    <span asp-validation-for="PassportNumber" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="Email"><span class="text-danger">* </span>Email</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="PassportExpirationDate"><span class="text-danger">* </span>Şəxsiyyət vəsiqəsinin son istifadə tarixi</label>
+                                    <input asp-for="PassportExpirationDate" class="form-control" />
+                                    <span asp-validation-for="PassportExpirationDate" class="text-danger my-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="custom-file">
+                                    <label asp-for="Photo"><span class="text-danger">* </span>Şəkili</label>
+                                    <input asp-for="Photo" accept="image" class="form-control" />
+                                    <span asp-validation-for="Photo" class="text-danger my-error"> </span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label asp-for="EducationType"><span class="text-danger">* </span>Təhsili</label>
+                                    <select class="form-control" asp-for="EducationType" asp-items="Html.GetEnumSelectList<Education>()">
+                                        <option selected="selected" value=""></option>
+                                    </select>
+                                    <span asp-validation-for="EducationType" class="text-danger my-error" />
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="display-block mr-3"><span class="text-danger"> * </span>Cinsi</label>
+                                    <div class="form-check form-check-inline">
+                                        @foreach (var item in Enum.GetNames(typeof(Gender)))
+                                        {
+                                            <input type="radio" name="gender" />
+                                            <label asp-for="@item">@item</label>
+                                            <input asp-for="@item" type="hidden" />
+                                            <span asp-validation-for="@item" class="text-danger my-error"></span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="display-block mr-3"><span class="text-danger"> * </span>Ailə vəziyyəti</label>
+                                    <div class="form-check form-check-inline">
+                                        @foreach (var item in Enum.GetNames(typeof(MarialStatus)))
+                                        {
+                                            <input type="radio" name="marial" />
+                                            <label asp-for="@item">@item</label>
+                                            <input asp-for="@item" type="hidden" />
+                                            <span asp-validation-for="@item" class="text-danger my-error"></span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

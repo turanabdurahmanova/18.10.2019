@@ -1,0 +1,102 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Recruitment";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <form method="post" class="my-form-margin" enctype="multipart/form-data">
+                    <div class="col-xl-12">
+                        <div class="portlet light" style="padding: 1px 20px 10px 15px;">
+                            <div class="portlet-title" style="border-bottom:1px solid #778899;">
+                                <div class="caption">
+                                    <i class="fa fa-plus my-text" aria-hidden="true"></i>
+                                    <span class="caption-subject bold my-text"> İşçi əlavə et </span>
+                                </div>
+                                <div class="actions hidden">
+                                    <div class="btn-group btn-group-circle">
+                                        <button class="btn red btn-outline" asp-action="List">
+                                            <i class="fa fa-close"></i> İmtina
+                                        </button>
+                                        <button class="btn green btn-circle-right btn-outline" asp-action="Recruitment">
+                                            <i class="fa fa-save" aria-hidden="true"></i> Yadda saxla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <input id="formerworkCount" name="formerworkCount" type="hidden" value="0"/>
+                            <div id="buraEleveEt" class="d-none"></div>
+                            <div class="row mt-5">
+                                <div class="col-xl-3">
+                                    <button type="button" id="addformerwork" class="btn bg-color text-white btn-rounded">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        Köhnə iş yeri əlavə et
+                                    </button>
+                                </div>
+                                <div class="offset-xl-7 col-xl-2 mb-3">
+                                    <button type="button" id="addrecruitment" class="btn bg-color text-white btn-rounded float-right">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        İşə qəbul
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="recruitment" class="row formerwork" style="display:none;">
+
+                                @await Component.InvokeAsync("Employee")
+
+                                <div class="col-xl-6 mt-3">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="text-danger"> * </span>İşə başlama tarixi</label>
+                                        <input class="form-control" type="date" asp-for="@Model.Recruitment.WhenStarted" />
+                                        <span asp-validation-for="@Model.Recruitment.WhenStarted" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 mt-3">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="text-danger"> * </span>Əmək haqqı</label>
+                                        <input id="salary" class="form-control" asp-for="@Model.Recruitment.Amount"/>
+                                        <span id="salaryError" asp-validation-for="@Model.Recruitment.Amount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="formerwork" class="row formerwork mt-5" style="display:none;">
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.FormerWorks[0].WorkName"><span class="text-danger">* </span>Köhnə iş yerinin adı</label>
+                            <input asp-for="@Model.FormerWorks[0].WorkName" class="form-control" />
+                            <span asp-validation-for="@Model.FormerWorks[0].WorkName" class="text-danger my-error"></span>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.FormerWorks[0].WhyLeftReason"><span class="text-danger">* </span>Köhnə işindən çıxma səbəbi</label>
+                            <input asp-for="@Model.FormerWorks[0].WhyLeftReason" class="form-control" />
+                            <span asp-validation-for="@Model.FormerWorks[0].WhyLeftReason" class="text-danger my-error"></span>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mt-3">
+                        <div class="form-group">
+                            <label asp-for="@Model.FormerWorks[0].WhenStarted"><span class="text-danger">* </span>Köhnə işinə başlama tarixi</label>
+                            <input asp-for="@Model.FormerWorks[0].WhenStarted" class="form-control" />
+                            <span asp-validation-for="@Model.FormerWorks[0].WhenStarted" class="text-danger my-error"></span>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mt-3">
+                        <div class="form-group">
+                            <label asp-for="@Model.FormerWorks[0].WhenLeft"><span class="text-danger">* </span>Köhnə işindən çıxma tarixi</label>
+                            <input asp-for="@Model.FormerWorks[0].WhenLeft" class="form-control" />
+                            <span asp-validation-for="@Model.FormerWorks[0].WhenLeft" class="text-danger my-error"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger removeFormerWork mt-2" style="margin-left:90%;">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

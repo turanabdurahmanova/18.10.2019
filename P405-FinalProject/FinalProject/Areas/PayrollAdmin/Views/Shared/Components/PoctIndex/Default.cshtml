@@ -1,0 +1,13 @@
+﻿@model  SelectListItemViewModel
+
+<div class="row company-padding">
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label asp-for="PoctIndex" class="my-label">Şirkətin poçt indeksi</label> <br>
+            <select asp-for="PoctIndex.Id" asp-items="Model.SelectListItemsPoctIndex" class="form-control mb-2 company-edit-input" name="PoctIndexId">
+                <option></option>
+            </select>
+            <span asp-validation-for="PoctIndex"></span>
+        </div>
+    </div>
+</div>

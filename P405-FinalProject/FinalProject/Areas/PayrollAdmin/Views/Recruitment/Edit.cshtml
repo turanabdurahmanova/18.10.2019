@@ -1,0 +1,172 @@
+﻿@model Recruitment
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container padding-top">
+    <div class="row">
+        <div class="col-xl-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="list-row bg-color">
+                    <div class="col-xl-12 my-border">
+                        <h5 class="page-title text-white"><i class="fa fa-pencil mr-3"></i> İşçinin məlumatını redaktə et</h5>
+                    </div>
+                </div>
+                <div class="portlet light mb" style="padding: 4% 20px 31px 15px;">
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-xl-9">
+
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Firstname" class="e-label">Ad</label>
+                                            <input asp-for="Employee.Firstname" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.Firstname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Lastname" class="e-label">Soyad</label>
+                                            <input asp-for="Employee.Lastname" class="form-control mb-2 e-i-h" />
+                                            <span asp-validation-for="Employee.Lastname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Fathername" class="e-label">Ata adı</label>
+                                            <input asp-for="Employee.Fathername" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.Fathername" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Birthday" class="e-label">Doğum günü</label>
+                                            <input asp-for="Employee.Birthday" class="form-control mb-2 e-i-h" />
+                                            <span asp-validation-for="Employee.Birthday" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.PassportExpirationDate" class="e-label">Passportun son istifadə tarixi</label>
+                                            <input asp-for="Employee.PassportExpirationDate" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.PassportExpirationDate" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label class="e-label">Cinsi</label>
+                                            <select class="form-control e-i-h" asp-for="Employee.GenderType" asp-items="Html.GetEnumSelectList<Gender>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="Employee.GenderType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Email" class="control-label e-label">Email</label>
+                                            <input asp-for="Employee.Email" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.Phone" class="e-label">Tel</label>
+                                            <input asp-for="Employee.Phone" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.Phone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.PassportNumber" class="e-label">Passport nömrəsi</label>
+                                            <input asp-for="Employee.PassportNumber" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.PassportNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.EducationType" class="e-label">Təhsili</label>
+                                            <select class="form-control e-i-h" asp-for="Employee.EducationType" asp-items="Html.GetEnumSelectList<Education>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="Employee.EducationType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label asp-for="Employee.MarialStatusType" class="e-label">Ailə vəziyyəti</label>
+                                            <select class="form-control e-i-h" asp-for="Employee.MarialStatusType" asp-items="Html.GetEnumSelectList<MarialStatus>()">
+                                                <option selected="selected" value=""></option>
+                                            </select>
+                                            <span asp-validation-for="Employee.MarialStatusType" class="text-danger my-error" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label">Qeydiyyat yeri</label>
+                                            <input asp-for="Employee.DistrictRegistration" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.DistrictRegistration" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="e-form-group">
+                                            <label class="e-label">Faktiki ünvan</label>
+                                            <input asp-for="Employee.CurrentAddres" class="form-control mb-2 e-i-h">
+                                            <span asp-validation-for="Employee.CurrentAddres" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 img-height">
+                                <div class="e-form-group form-group-height">
+                                    <img src="~/img/@Model.Employee.Image" />
+                                    <input asp-for="Employee.Photo" class="form-control e-i-h" />
+                                    <span asp-validation-for="Employee.Image" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row pt-3">
+                            <div class="col-xl-12">
+                                <a class="btn red btn-outline" asp-action="List">
+                                    <i class="fa fa-close"></i> İmtina
+                                </a>
+                                <button type="submit" class="btn green btn-circle-right btn-outline border ml-2 float-right" asp-action="Edit">
+                                    <i class="fa fa-save"></i> Dəyişikliyi yadda saxla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

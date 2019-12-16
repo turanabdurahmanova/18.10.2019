@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ShopProfitListViewModel>
+
+@{
+    ViewData["Title"] = "ShopProfitList";
+}
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <div class="row list-row bg-color">
+            <div class="col-xl-12 my-border">
+                <h4 class="page-title text-white"> <i class="fas fa-money-check-alt mr-3"></i>  Mağazanın aylıq gəlirinə görə işçilərə bonusun verilməsi</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="portlet light">
+                    <form method="post">
+                        <button class="btn bg-color shopProfitCreate float-right mb-5 mt-4">
+                            <i class="fa fa-save"></i> Yadda saxla
+                        </button>
+                    </form>
+                    <table class="table table-striped table-bordered shopProfit">
+                        <thead>
+                            <tr>
+                                <th>Şirkət</th>
+                                <th>Mağaza</th>
+                                <th>Minimum limit</th>
+                                <th>Aylıq gəlir</th>
+                                <th>Maxsimum limit</th>
+                                <th>İşçi sayı</th>
+                                <th>İşçilərə veriləcək bonusun məbləği</th>
+                                <th> Bonus </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Shop.Company.Name</td>
+                                    <td>@item.Shop.Name</td>
+                                    <td>@item.MinBonusAmount</td>
+                                    <td>@item.ShopProfits</td>
+                                    <td>@item.MaxBonusAmount</td>
+                                    <td>@item.Shop.Recruitments.Count()</td>
+                                    <td>@item.PromotionAmount</td>
+                                    <td><input class="checkbox" type="checkbox" data-id="@item.Shop.Id"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
